@@ -21,6 +21,11 @@
     <br />
     <button onclick="handleGetlocalStorageSearchQuery()">redirect</button>
     <button onclick="handleScreenRedirect()">app redirect</button>
+
+    <br />
+    <br />
+    <button onclick="reconfigure()">Reconfigure</button>
+    <button onclick="anotherPlay()">another Play</button>
     <script
       src="https://js-cdn.music.apple.com/musickit/v3/musickit.js"
       data-web-components
@@ -49,6 +54,24 @@
           .catch((e) => {
             console.log("Error:" + e);
           });
+      }
+
+      function reconfigure() {
+        MusicKit.configure({
+          userToken: localStorage.getItem('music.cps7sna66g.media-user-token'),
+            // "ApXgqaEnnLd7X9SR0QLuAHcq8bHwrPneMI0vW0AIf9fmojJZ0jruIVm9VUgZLfFGYvOygnatoYPovHf9G4/jP1vsVXXtAdMaGCY6IawpPW2QMsqkgV6AbT3xcmNuHkiqhnXlpGdADsKFRvDI/ns2QWOQ7fDbIi8jcwtFqVg0ia7fM9QhbT9bx/e5cOxtJ6NoYY9FNsfCif1GoSxyzekk/Dglr4xtlC3fl1mS6i5ZKA06Cqb4lw==",
+          developerToken:
+            "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjY5Tkw4UkE4RDUifQ.eyJpc3MiOiJDUFM3U05BNjZHIiwiZXhwIjoxNzQ5NjE2OTU0LCJpYXQiOjE3MzM4Mzk5NTR9.i-tmFNNQGIob1Cr3nVpCaQs78S8DPOjlUuEP8Q8WGrkNN0C4NkLRYhEn-RFyoV40X9x3IpHp-sS_hHjvQq4SWw",
+          app: {
+            name: "My Cool Web App",
+            build: "1978.4.1",
+          },
+        });
+        window.music0 = MusicKit.getInstance();
+      }
+
+      function anotherPlay() {
+        music0.setQueue({ songs: ["673583141"], startPlaying: true });
       }
 
       function handleGetlocalStorageSearchQuery() {
