@@ -79,7 +79,7 @@
       document.addEventListener(
         "musickitloaded",
         setTimeout(function () {
-          console.log('here we go!')
+          console.log("here we go!");
           // MusicKit global is now defined
           MusicKit.configure({
             developerToken:
@@ -105,10 +105,11 @@
             console.log("pause");
             music.pause();
           });
-
-          if (window.location.href.includes("login")) {
-            handleLogin();
-          }
+          setTimeout(() => {
+            if (window.location.href.includes("login")) {
+              handleLogin();
+            }
+          }, 1500);
         }, 1000)
       );
     </script>
