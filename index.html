@@ -33,7 +33,7 @@
 
       function handleScreenRedirect() {
         console.log("specific screen!");
-        window.location= `${appUri}spotifyAuth`
+        window.location = `${appUri}spotifyAuth`;
       }
 
       function handleLogin() {
@@ -76,35 +76,41 @@
         return url.href;
       }
 
-      document.addEventListener("musickitloaded", function () {
-        // MusicKit global is now defined
-        MusicKit.configure({
-          developerToken:
-            "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjY5Tkw4UkE4RDUifQ.eyJpc3MiOiJDUFM3U05BNjZHIiwiZXhwIjoxNzQ5NjE2OTU0LCJpYXQiOjE3MzM4Mzk5NTR9.i-tmFNNQGIob1Cr3nVpCaQs78S8DPOjlUuEP8Q8WGrkNN0C4NkLRYhEn-RFyoV40X9x3IpHp-sS_hHjvQq4SWw",
-          app: {
-            name: "My Cool Web App",
-            build: "1978.4.1",
-          },
-        });
-        window.music = MusicKit.getInstance();
-        document
-          .getElementById("login-btn")
-          .addEventListener("click", handleLogin);
-        document.getElementById("play").addEventListener("click", async () => {
-          console.log("play!!");
-          await music.setQueue({ album: "1025210938" });
-          music.play();
-        });
+      document.addEventListener(
+        "musickitloaded",
+        setTimeout(function () {
+          console.log('here we go!')
+          // MusicKit global is now defined
+          MusicKit.configure({
+            developerToken:
+              "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjY5Tkw4UkE4RDUifQ.eyJpc3MiOiJDUFM3U05BNjZHIiwiZXhwIjoxNzQ5NjE2OTU0LCJpYXQiOjE3MzM4Mzk5NTR9.i-tmFNNQGIob1Cr3nVpCaQs78S8DPOjlUuEP8Q8WGrkNN0C4NkLRYhEn-RFyoV40X9x3IpHp-sS_hHjvQq4SWw",
+            app: {
+              name: "My Cool Web App",
+              build: "1978.4.1",
+            },
+          });
+          window.music = MusicKit.getInstance();
+          document
+            .getElementById("login-btn")
+            .addEventListener("click", handleLogin);
+          document
+            .getElementById("play")
+            .addEventListener("click", async () => {
+              console.log("play!!");
+              await music.setQueue({ album: "1025210938" });
+              music.play();
+            });
 
-        document.getElementById("pause").addEventListener("click", () => {
-          console.log("pause");
-          music.pause();
-        });
+          document.getElementById("pause").addEventListener("click", () => {
+            console.log("pause");
+            music.pause();
+          });
 
-        if (window.location.href.includes("login")) {
-          handleLogin();
-        }
-      });
+          if (window.location.href.includes("login")) {
+            handleLogin();
+          }
+        }, 1000)
+      );
     </script>
   </body>
 </html>
